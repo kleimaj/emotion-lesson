@@ -267,64 +267,55 @@ export const SecondaryButton = styled(Button)`
 
 ### Global Styles with Polished
 
-You can also define Global styles with styled components. We will also be installing the polished dependency to utilize some additional functionality for CSS in JS type of projects
+You can also define Global styles with Emotion. We will also be installing the polished dependency to utilize some additional functionality for CSS in JS type of projects
 
 - `npm install polished`
 
-- `import { createGlobalStyle } from "styled-components'`
+- `import { Global, css } from '@emotion/core'`
 
-- define and export your GlobalStyle with `createGlobalStyle`
-
-- import GlobalStyle to `index.js`, and place it right underneath your `App` component.
-
-```javascript
-// utils / Global.js
-import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'polished';
-
-// CSS RESET
-// Base Font Size: 16px
-export const GlobalStyle = createGlobalStyle`
-    // Cross Browser Compatibility
-    ${normalize()}
-    html {
-        font-size: 16px;
-        box-sizing: border-box;
-    }
-
-    *, *:before, *:after {
-        box-sizing: inherit;
-    }
-
-    body {
-        margin: 0;
-        font-family: 'Menlo', monospace;
-    }
-
-    main {
-        width: 90%;
-        margin: 0 auto;
-    }
-`;
-```
-
-And import GlobalStyle into `index.js`
+- create a Global component in your index.js
 
 ```javascript
 // index.js
 ...
+import { Global, css } from '@emotion/core';
+import App from './App';
+
 ReactDOM.render(
   <React.StrictMode>
+    <Global
+      styles={css`
+        html {
+          font-size: 16px;
+          box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+          box-sizing: inherit;
+        }
+
+        body {
+          margin: 0;
+          font-family: 'Menlo', monospace;
+        }
+
+        main {
+          width: 90%;
+          margin: 0 auto;
+        }
+      `}
+    />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
 ```
 
-### Building a Modal with Composite Styled Components
+### Building a Modal with Nested Styled Components
 
-![Modal](./markdown/images/modal.png)
+![Modal](https://github.com/kleimaj/styled-components/raw/master/markdown/images/modal.png)
 
 In the second part of this lesson we will be building a modal in order to call our users to action. This is a great way of leading them to a login / signup page. For this example I used an open source illustration from [undraw.io](https://undraw.co/) as well as an icon from [Font Awesome](https://fontawesome.com/)
 
