@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { PrimaryButton } from './Buttons';
+import { Illustrations, CloseIcon } from '../assets';
 
 const ModalWrapper = styled.div`
   width: 800px;
@@ -28,12 +29,28 @@ const SignUpText = styled.p`
   text-align: center;
 `;
 
+const CloseModalButton = styled.button`
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+`;
+
 export const SignUpModal = () => {
   return (
     <ModalWrapper>
+      <img src={Illustrations.SignUp} alt='Sign Up!' />
       <SignUpHeader>Sign Up!</SignUpHeader>
       <SignUpText>Sign up today to get access to cool things!</SignUpText>
       <PrimaryButton>Submit</PrimaryButton>
+      <CloseModalButton>
+        <CloseIcon />
+      </CloseModalButton>
     </ModalWrapper>
   );
 };
