@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/core */
 
-import { css } from "@emotion/core";
+import { css } from '@emotion/core';
 
 function App() {
+  const color = 'white';
   return (
     <div>
       <button
@@ -11,8 +12,9 @@ function App() {
           background-color: hotpink;
           font-size: 24px;
           border-radius: 4px;
+          cursor: pointer;
           &:hover {
-            color: white;
+            color: ${color};
           }
         `}
       >

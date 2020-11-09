@@ -1,10 +1,10 @@
 # CSS in JS (Emotion and Styled-Components)
 
-![Styled-Components Logo](./markdown/images/styled-components.png)
+![Emotion.js Logo](https://miro.medium.com/max/3840/1*hPN6aCm0RmEdHwksS8kaxA.png)
 
 ## Why use Emotion?
 
-[Styled Components](https://styled-components.com/) is a Javascript library that helps keep the concerns of styling and element architecture separate and makes components more readable, overall. Furthermore, when you have components that rely on JavaScript for their style, Emotion gives control of those states back to CSS instead of using a multitude of conditional class names.
+[Emotion](https://emotion.sh/) is a Javascript library that helps keep the concerns of styling and element architecture separate and makes components more readable, overall. Furthermore, when you have components that rely on JavaScript for their style, Emotion gives control of those states back to CSS instead of using a multitude of conditional class names.
 
 ## CSS in JS
 
@@ -28,11 +28,14 @@ For example:
 
 ```
 
-With Emotion, JavaScript is used to style our components. When the components are parsed, CSS is generated and attached to the DOM. The CSS used in styled is much more capable than inline styles, allowing for nesting, mixins, and other advanced usage (but not as powerful as a CSS pre-processor).
+With Emotion, JavaScript is used to style our components with CSS template literals. When the components are parsed, CSS is generated and attached to the DOM. The CSS used in styled is much more capable than inline styles, allowing for nesting, mixins, and other advanced usage (but not as powerful as a CSS pre-processor).
+
+See sites that use CSS in JS:
+[Oscar Health](https://www.hioscar.com/)
 
 ```javascript
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
-/** @jsx jsx */
+/** @jsxImportSource @emotion/core */
 import { css, jsx } from "@emotion/core";
 
 const color = "white";
@@ -66,19 +69,85 @@ npm i @emotion/styled @emotion/core
 
 ### The Basic Setup
 
-The next thing we will do is make a directory for our components
+If you take a look at our boilerplate, we will have a `Components` directory, where we will store all of our styled components, as well as an App.js and index.js.
 
-```
-mkdir src/components && cd src/components
+Let's implement a basic button in App.js to familarize ourselves with how Emotion works!
+
+- Step 1 Configure the JSX Babel Plugin to use Emotion's `jsx` function instead of `React.createElement`
+
+```javascript
+// Set the jsx pragma at the top of any js file that uses the css prop
+/** @jsxImportSource @emotion/core */
+
+import { css } from "@emotion/core";
 ```
 
-From here let's create our first styled-component, a Button (creative, I know)
+You may also configure your `.babelrc` if you are using something like `Next.js`. Your .babelrc would look something like so:
 
-```
-touch Buttons.js
+```json
+{
+  "presets": [
+    [
+      "next-babel",
+      {
+        "preset-react": {
+          "runtime": "automatic",
+          "importSource": "@emotion/core"
+        }
+      }
+    ]
+  ],
+  "plugins": ["babel-plugin-emotion"]
+}
 ```
 
-In our `Buttons.js`, we will import styled-components and define our first button, a Primary Button.
+- Step 2 Create your first CSS in JS component
+
+```javascript
+function App() {
+  return (
+    <div>
+      <button
+        css={css`
+          padding: 32px;
+          background-color: hotpink;
+          font-size: 24px;
+          border-radius: 4px;
+          cursor: pointer;
+        `}
+      >
+        Pink Button
+      </button>
+    </div>
+  );
+}
+```
+
+- Step 3 Add a hover pseudo class, and pass in dynamic styles.
+
+```javascript
+function App() {
+  const color = "white";
+  return (
+    <div>
+      <button
+        css={css`
+          padding: 32px;
+          background-color: hotpink;
+          font-size: 24px;
+          border-radius: 4px;
+          cursor: pointer;
+          &:hover {
+            color: ${color};
+          }
+        `}
+      >
+        Hover to change color
+      </button>
+    </div>
+  );
+}
+```
 
 ```javascript
 // Buttons.js
