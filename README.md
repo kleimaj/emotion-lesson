@@ -333,7 +333,7 @@ First, create your parent component that will house all other components of the 
 // Modals.js
 
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const ModalWrapper = styled.div`
   width: 800px;
