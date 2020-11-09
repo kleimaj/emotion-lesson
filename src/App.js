@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 import { SecondaryButton } from './components';
 import { SignUpModal } from './components';
+import { ThemeProvider } from 'emotion-theming';
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -10,6 +12,11 @@ const Container = styled.div`
   justify-content: space-around;
   flex-direction: column;
 `;
+const theme = {
+  colors: {
+    primary: '',
+  },
+};
 function App() {
   const [showModal, setShowModal] = useState(false);
   return (
