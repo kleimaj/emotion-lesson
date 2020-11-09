@@ -1,10 +1,10 @@
-import React from 'react';
+import { useSpring, animated } from 'react-spring';
 import styled from '@emotion/styled';
 import { PrimaryButton } from './Buttons';
 import SignUp from '../assets/signup.svg';
 import CloseIcon from '../assets/close-icon.svg';
 
-const ModalWrapper = styled.div`
+const ModalWrapper = styled(animated.div)`
   width: 800px;
   height: 550px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
@@ -42,14 +42,18 @@ const CloseModalButton = styled.button`
   padding: 0;
 `;
 
-export const SignUpModal = () => {
+export const SignUpModal = (props) => {
+  const animation = useSpring({
+    opacity: props.showModal ? 1 : 0,
+    transform: props.showModal ? `translateY(0)` : `translateY(-200%)`,
+  });
   return (
-    <ModalWrapper>
+    <ModalWrapper style={animation}>
       <img src={SignUp} alt='Sign Up!' />
       <SignUpHeader>Sign Up!</SignUpHeader>
       <SignUpText>Sign up today to get access to cool things!</SignUpText>
       <PrimaryButton>Submit</PrimaryButton>
-      <CloseModalButton>
+      <CloseModalButton onClick={() => props.setShowModal(false)}>
         <img src={CloseIcon} alt='Close' />
       </CloseModalButton>
     </ModalWrapper>
