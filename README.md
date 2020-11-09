@@ -36,9 +36,9 @@ See sites that use CSS in JS:
 ```javascript
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsxImportSource @emotion/core */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from '@emotion/core';
 
-const color = "white";
+const color = 'white';
 
 render(
   <div
@@ -79,7 +79,7 @@ Let's implement a basic button in App.js to familarize ourselves with how Emotio
 // Set the jsx pragma at the top of any js file that uses the css prop
 /** @jsxImportSource @emotion/core */
 
-import { css } from "@emotion/core";
+import { css } from '@emotion/core';
 ```
 
 You may also configure your `.babelrc` if you are using something like `Next.js`. Your .babelrc would look something like so:
@@ -127,7 +127,7 @@ function App() {
 
 ```javascript
 function App() {
-  const color = "white";
+  const color = 'white';
   return (
     <div>
       <button
@@ -151,7 +151,7 @@ function App() {
 
 ```javascript
 // Buttons.js
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const PrimaryButton = styled.button`
   // CSS / SCSS goes in here
@@ -169,8 +169,8 @@ In our `App.js`, we will import the PrimaryButton and render it in our App.
 
 ```javascript
 // App.js
-import React from "react";
-import PrimaryButton from "./components/Buttons";
+import React from 'react';
+import PrimaryButton from './components/Buttons';
 
 function App() {
   return (
@@ -364,8 +364,8 @@ You can also define Global styles with styled components. We will also be instal
 
 ```javascript
 // utils / Global.js
-import { createGlobalStyle } from "styled-components";
-import { normalize } from "polished";
+import { createGlobalStyle } from 'styled-components';
+import { normalize } from 'polished';
 
 // CSS RESET
 // Base Font Size: 16px
@@ -426,8 +426,8 @@ First, create your parent component that will house all other components of the 
 ```javascript
 // Modals.js
 
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const ModalWrapper = styled.div`
   width: 800px;
@@ -441,7 +441,7 @@ const ModalWrapper = styled.div`
   align-items: center;
   position: relative;
   border-radius: 2px;
-  font-family: "Menlo", monospace;
+  font-family: 'Menlo', monospace;
 `;
 ```
 
@@ -470,7 +470,7 @@ const SignUpText = styled.p`
 // Modal.js
 
 // import the PrimaryButton
-import { PrimaryButton } from "./Buttons";
+import { PrimaryButton } from './Buttons';
 
 export const SignUpModal = () => {
   return (
@@ -496,7 +496,7 @@ Your assets directory will look something like so:
 ```javascript
 // assets/index.js
 
-import SignUp from "./illustrations/signup.svg";
+import SignUp from './illustrations/signup.svg';
 
 export const Illustrations = {
   SignUp,
@@ -508,8 +508,8 @@ export const Illustrations = {
 ```javascript
 // assets/icons/close-icon.js
 
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const CloseIconWrapper = styled.svg`
   width: 100%;
@@ -517,20 +517,20 @@ const CloseIconWrapper = styled.svg`
 `;
 
 export const CloseIcon = () => (
-  <CloseIconWrapper aria-hidden="true">
+  <CloseIconWrapper aria-hidden='true'>
     <svg
-      aria-hidden="true"
-      focusable="false"
-      data-prefix="far"
-      data-icon="times"
-      className="svg-inline--fa fa-times fa-w-10"
-      role="img"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 320 512"
+      aria-hidden='true'
+      focusable='false'
+      data-prefix='far'
+      data-icon='times'
+      className='svg-inline--fa fa-times fa-w-10'
+      role='img'
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 320 512'
     >
       <path
-        fill="currentColor"
-        d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"
+        fill='currentColor'
+        d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'
       ></path>
     </svg>
   </CloseIconWrapper>
@@ -542,7 +542,7 @@ export const CloseIcon = () => (
 ```javascript
 // assets/index.js
 
-export * from "./icons/close-icon";
+export * from './icons/close-icon';
 ```
 
 #### 6. Import our assets into `Modals.js` and render them
@@ -550,7 +550,7 @@ export * from "./icons/close-icon";
 ```javascript
 // Modals.js
 
-import { Illustrations, CloseIcon } from "../assets";
+import { Illustrations, CloseIcon } from '../assets';
 
 // Button to wrap our CloseIcon component
 const CloseModalButton = styled.button`
@@ -570,13 +570,13 @@ export const SignUpModal = () => {
     <ModalWrapper>
       <img
         src={Illustrations.SignUp}
-        alt="Sign up for an account"
-        aria-hidden="true"
+        alt='Sign up for an account'
+        aria-hidden='true'
       />
       <SignUpHeader>Sign Up!</SignUpHeader>
       <SignUpText>Sign up today to get access to cool things!</SignUpText>
       <PrimaryButton>Submit</PrimaryButton>
-      <CloseModalButton aria-label="Close modal">
+      <CloseModalButton aria-label='Close modal'>
         <CloseIcon />
       </CloseModalButton>
     </ModalWrapper>
@@ -588,20 +588,20 @@ export const SignUpModal = () => {
 
 ```javascript
 // App.js
-import React from "react";
-import { PrimaryButton } from "./components/Buttons";
-import { SignUpModal } from "./components/Modals";
+import React from 'react';
+import { PrimaryButton } from './components/Buttons';
+import { SignUpModal } from './components/Modals';
 
 function App() {
   return (
     <div
       style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-around",
-        flexDirection: "column",
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'column',
       }}
     >
       <h1>My Styled Components</h1>
@@ -631,9 +631,9 @@ In `App.js`, we want to import `useState` to create a toggle state for our modal
 ```javascript
 // App.js
 
-import React, { useState } from "react";
-import { PrimaryButton } from "./components/Buttons";
-import { SignUpModal } from "./components/Modals";
+import React, { useState } from 'react';
+import { PrimaryButton } from './components/Buttons';
+import { SignUpModal } from './components/Modals';
 
 function App() {
   // useState hook
@@ -641,12 +641,12 @@ function App() {
   return (
     <div
       style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-around",
-        flexDirection: "column",
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'column',
       }}
     >
       <h1>My Styled Components</h1>
