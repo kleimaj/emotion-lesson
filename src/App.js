@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { SecondaryButton } from './components';
 import { SignUpModal } from './components';
@@ -10,10 +11,13 @@ const Container = styled.div`
   flex-direction: column;
 `;
 function App() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <Container>
-      <SignUpModal />
-      <SecondaryButton>Press me</SecondaryButton>
+      <SignUpModal showModal={showModal} setShowModal={setShowModal} />
+      <SecondaryButton onClick={() => setShowModal(!showModal)}>
+        Press me
+      </SecondaryButton>
     </Container>
   );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { PrimaryButton } from './Buttons';
-import { Illustrations, CloseIcon } from '../assets';
+import SignUp from '../assets/signup.svg';
+import CloseIcon from '../assets/close-icon.svg';
 
 const ModalWrapper = styled.div`
   width: 800px;
@@ -44,12 +45,12 @@ const CloseModalButton = styled.button`
 export const SignUpModal = () => {
   return (
     <ModalWrapper>
-      <img src={Illustrations.SignUp} alt='Sign Up!' />
+      <img src={SignUp} alt='Sign Up!' />
       <SignUpHeader>Sign Up!</SignUpHeader>
       <SignUpText>Sign up today to get access to cool things!</SignUpText>
       <PrimaryButton>Submit</PrimaryButton>
       <CloseModalButton>
-        <CloseIcon />
+        <img src={CloseIcon} alt='Close' />
       </CloseModalButton>
     </ModalWrapper>
   );
