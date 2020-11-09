@@ -8,3 +8,22 @@ export const Button = styled.button`
   cursor: pointer;
   font-family: 'Menlo', monospace;
 `;
+
+export const PrimaryButton = styled(Button)`
+  background-color: red;
+  border: none;
+  color: white;
+`;
+
+export const SecondaryButton = styled(Button)`
+  background: none;
+  border: 1px solid black;
+  color: white;
+  color: black;
+  transition: background-color 0.2s linear, color 0.2s linear;
+
+  &:hover {
+    background-color: red;
+    color: white;
+  }
+`;

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/core */
 
 import { css } from '@emotion/core';
-import { Button } from './components';
+import { SecondaryButton } from './components';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         flex-direction: column;
       `}
     >
-      <Button>Press me</Button>
+      <SecondaryButton>Press me</SecondaryButton>
     </div>
   );
 }

@@ -149,44 +149,48 @@ function App() {
 }
 ```
 
-```javascript
-// Buttons.js
-import styled from 'styled-components';
+### Styled Components
 
-const PrimaryButton = styled.button`
-  // CSS / SCSS goes in here
-  background-color: red;
-  border: none;
-  color: white;
+```javascript
+// /components/Buttons.js
+import styled from '@emotion/styled';
+
+export const Button = styled.button`
   padding: 12px 24px;
   font-size: 1rem;
+  border-radius: 2px;
+  min-width: 100px;
+  cursor: pointer;
+  font-family: 'Menlo', monospace;
 `;
-
-export default PrimaryButton;
 ```
 
-In our `App.js`, we will import the PrimaryButton and render it in our App.
+In our `App.js`, we will import the Button and render it in our App.
 
 ```javascript
 // App.js
-import React from 'react';
-import PrimaryButton from './components/Buttons';
+
+import { Button } from './components';
 
 function App() {
   return (
-    <div>
-      <h1>My Styled Components</h1>
-      <PrimaryButton>Click Me</PrimaryButton>
+    <div
+      css={css`
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+      `}
+    >
+      <Button>Press me</Button>
     </div>
   );
 }
 
 export default App;
 ```
-
-You should see something like this rendered in your browser:
-
-![Checkpoint 1](./markdown/images/checkpoint1.png)
 
 ### Inheritance with Styled-Components
 
