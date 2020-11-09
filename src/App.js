@@ -1,22 +1,20 @@
-/** @jsxImportSource @emotion/core */
+import styled from '@emotion/styled';
 
-import { css } from '@emotion/core';
 import { SecondaryButton } from './components';
 
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+`;
 function App() {
   return (
-    <div
-      css={css`
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        flex-direction: column;
-      `}
-    >
+    <Container>
       <SecondaryButton>Press me</SecondaryButton>
-    </div>
+    </Container>
   );
 }
 

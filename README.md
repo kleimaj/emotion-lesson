@@ -151,6 +151,49 @@ function App() {
 
 ### Styled Components
 
+`styled` is a way to create React components that have styles attached to them. It’s available from @emotion/styled. styled was heavily inspired by styled-components and glamorous
+
+#### Styling elements and components
+
+`styled` is very similar to css except you call it with an html tag or React component and then call that with a template literal for string styles or a regular function call for object styles.
+
+```javascript
+// App.js
+
+import styled from '@emotion/styled';
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+`;
+
+function App() {
+  return (
+    <Container>
+      <button
+        css={css`
+          padding: 32px;
+          background-color: hotpink;
+          font-size: 24px;
+          border-radius: 4px;
+          cursor: pointer;
+        `}
+      >
+        Hover to change color
+      </button>
+    </Container>
+  );
+}
+```
+
+#### Styled Buttons
+
+Let's isolate our buttons into their own seperate components where we can export them and use them all over our project.
+
 ```javascript
 // /components/Buttons.js
 import styled from '@emotion/styled';
@@ -174,18 +217,9 @@ import { Button } from './components';
 
 function App() {
   return (
-    <div
-      css={css`
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        flex-direction: column;
-      `}
-    >
+    <Container>
       <Button>Press me</Button>
-    </div>
+    </Container>
   );
 }
 
@@ -201,7 +235,7 @@ We can refactor our `Buttons.js` to dry our code when creating more button varia
 ...
 
 // The Base Button Component
-const Button = styled.button`
+export const Button = styled.button`
     padding: 12px 24px;
     font-size: 1rem;
     border-radius: 2px;
@@ -210,147 +244,24 @@ const Button = styled.button`
     font-family: "Menlo", monospace;
 `
 // PrimaryButton inherits Button
-const PrimaryButton = styled(Button)`
-    // CSS / SCSS goes in here
+export const PrimaryButton = styled(Button)`
+  background-color: red;
+  border: none;
+  color: white;
+`;
+// SecondaryButton inherits Button
+export const SecondaryButton = styled(Button)`
+  background: none;
+  border: 1px solid black;
+  color: white;
+  color: black;
+  transition: background-color 0.2s linear, color 0.2s linear;
+
+  &:hover {
     background-color: red;
-    border: none;
     color: white;
-`
-
-```
-
-### Global Styles
-
-### Adding more button states with nesting
-
-![Button States](./markdown/images/button-states.png)
-
-Next we will be implementing our various Button states. The correct properties will usually be provided to you through a brand guide or a design system by a designer. If you're a unicorn and designed the button states yourself, you can retrieve the colors, padding, and font-sizes yourself from Figma or any conventional design tool.
-
-```javascript
-// Buttons.js
-...
-
-const primaryColor = '#FF5757';
-const hoverColor = '#FF4646';
-const activeColor = '#FF0000';
-
-const textOnPrimary = '#000000';
-const textOnPrimaryInverted = '#ffffff';
-
-const disabled = '#B1B1B1';
-const disabledText = '#3E3D3D';
-
-const PrimaryButton = styled(Button)`
-    // CSS / SCSS goes in here
-    background-color: ${primaryColor};
-    border: none;
-    color: ${textOnPrimary};
-
-    &:hover {
-        background-color: ${hoverColor};
-        color: ${textOnPrimaryInverted};
-    }
-
-    &:focus {
-        background-color: ${activeColor};
-        color: ${textOnPrimaryInverted};
-        outline: 2px solid ${activeColor};
-        outline-offset: 1px;
-    }
-
-    &:active {
-        background-color: ${activeColor};
-        color: ${textOnPrimaryInverted};
-    }
-
-    &:disabled {
-        background-color: ${disabled};
-        color: ${disabledText};
-        cursor: not-allowed;
-    }
-`
-
-```
-
-### Additional Button Variations
-
-Modifiers in styled-components allow us to add additional modifications to our styled-components. For the example of the button, we will add two modifiers for bigger and smaller Primary Buttons.
-
-First install the `styled-components-modifiers` package
-
-```
-    npm i styled-components-modifiers
-```
-
-After this, we will go ahead and define our `BUTTON_MODIFIERS`, which is a configuration object of functions that return CSS styled strings.
-
-```javascript
-// Buttons.js
-import styled from 'styled-components';
-import { applyStyleModifiers } from 'styled-components-modifiers';
-
-const BUTTON_MODIFIERS = {
-    small: () => `
-      font-size: 0.8rem;
-      padding: 8px;
-    `,
-    large: () => `
-      font-size: 1.5rem;
-      padding: 16px 25px;
-    `,
-    warning: () =>  `
-      background-color: #F2DC12;
-      color: black;
-
-      &:hover, &:focus, &:active {
-          background-color: #F2DC12;
-          color: black;
-          outline: none;
-      }
-    `
-}
-
-...
-
-```
-
-We will then apply the modifiers <strong>in the last line of our defined PrimaryButton</strong>, such that it is not overridden by any of the defined styles.
-
-```javascript
-// Buttons.js
-
-...
-
-const PrimaryButton = styled(Button)`
-    // CSS / SCSS goes in here
-    background-color: ${primaryColor};
-    border: none;
-    color: ${textOnPrimary};
-
-    &:hover {
-        background-color: ${hoverColor};
-        color: ${textOnPrimaryInverted};
-    }
-
-    ...
-
-    ${applyStyleModifiers(BUTTON_MODIFIERS)}
-`
-
-export default PrimaryButton;
-
-```
-
-In `App.js`, we are then able to utilize modifiers like so:
-
-```javascript
-
-    <PrimaryButton modifiers="large">A Large Button</PrimaryButton>
-
-    <PrimaryButton modifiers="small">A Small Button</PrimaryButton>
-
-    <PrimaryButton modifiers={["large", "warning"]}>A Large Warning Button</PrimaryButton>
+  }
+`;
 
 ```
 
