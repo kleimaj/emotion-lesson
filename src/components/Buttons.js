@@ -17,9 +17,8 @@ export const PrimaryButton = styled(Button)`
 
 export const SecondaryButton = styled(Button)`
   background: none;
-  border: 1px solid black;
-  color: white;
-  color: black;
+  border: 1px solid ${(props) => props.theme.buttonBorder};
+  color: ${(props) => props.theme.text};
   transition: background-color 0.2s linear, color 0.2s linear;
 
   &:hover {
