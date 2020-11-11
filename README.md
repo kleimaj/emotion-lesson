@@ -36,7 +36,7 @@ See sites that use CSS in JS:
 ```javascript
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsxImportSource @emotion/core */
-import { css, jsx } from '@emotion/core';
+import { css } from '@emotion/core';
 
 const color = 'white';
 
@@ -226,6 +226,23 @@ function App() {
 export default App;
 ```
 
+### Props with Styled Components
+
+We can pass props to our styles much like regular React components in order to create a wider variety of styles. Take for instance this implementation of using a large button.
+
+```javascript
+<Button large>Press me</Button>
+```
+
+Within our CSS, we can pass styles to effect our padding and font-size with ternary operators:
+
+```javascript
+export const Button = styled.button`
+  padding: ${(props) => (props.large ? `16px 25px` : `12px 24px`)};
+  font-size: ${(props) => (props.large ? `1.5rem` : `1rem`)};
+`;
+```
+
 ### Inheritance with Styled-Components
 
 We can refactor our `Buttons.js` to dry our code when creating more button variations. We will create a base `Button` component that all specific buttons will inherit the styled properties of.
@@ -265,11 +282,9 @@ export const SecondaryButton = styled(Button)`
 
 ```
 
-### Global Styles with Polished
+### Global Styles with Emotion
 
 You can also define Global styles with Emotion. We will also be installing the polished dependency to utilize some additional functionality for CSS in JS type of projects
-
-- `npm install polished`
 
 - `import { Global, css } from '@emotion/core'`
 
@@ -425,7 +440,7 @@ export const SignUpModal = () => {
 };
 ```
 
-#### 7. Let's create give App a flex container and render a button and a modal.
+#### 7. Let's place our modal into App.js
 
 ```javascript
 // App.js
@@ -556,6 +571,10 @@ const ModalWrapper = styled(animated.div)`
 <ModalWrapper style={animation}>
 
 ```
+
+### Theming with CSS-in-JS
+
+It's very easy to maintain themes across a react project with Emotion.
 
 ### In conclusion
 

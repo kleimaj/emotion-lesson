@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Button = styled.button`
-  padding: 12px 24px;
-  font-size: 1rem;
+  padding: ${(props) => (props.large ? `16px 25px` : `12px 24px`)};
+  font-size: ${(props) => (props.large ? `1.5rem` : `1rem`)};
   border-radius: 2px;
   min-width: 100px;
   cursor: pointer;

@@ -41,7 +41,7 @@ function App() {
     <ThemeProvider theme={isDark ? themeDark : themeLight}>
       <Container>
         <SignUpModal showModal={showModal} setShowModal={setShowModal} />
-        <SecondaryButton onClick={() => setShowModal(!showModal)}>
+        <SecondaryButton large onClick={() => setShowModal(!showModal)}>
           Press me
         </SecondaryButton>
         <PrimaryButton onClick={() => setIsDark(!isDark)}>
