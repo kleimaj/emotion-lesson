@@ -574,7 +574,103 @@ const ModalWrapper = styled(animated.div)`
 
 ### Theming with CSS-in-JS
 
-It's very easy to maintain themes across a react project with Emotion.
+It's very easy to maintain themes across a react project with Emotion. First we must install the proper dependencies to utilize the `ThemeProvider` component.
+
+```bash
+npm install emotion-theming
+```
+
+> Next, we can import the `ThemeProvider` into our `App.js`
+
+```javascript
+// App.js
+import { ThemeProvider } from 'emotion-theming';
+```
+
+Next, go ahead and copy the following themes we will use for this exercise. They are javascript objects that include a `lightTheme` and `darkTheme`
+
+```javascript
+const themeLight = {
+  text: '#000',
+  background: '#fff',
+  modalBg: '#fff',
+  buttonText: '#000',
+  buttonTextHover: '#fff',
+  buttonBorder: '#000',
+  buttonBg: 'rgba(0, 0, 0, 0)',
+  buttonBgHover: 'rgba(0, 0, 0, 1)',
+};
+
+const themeDark = {
+  text: '#fff',
+  background: '#121212',
+  modalBg: '#202023',
+  buttonText: '#fff',
+  buttonTextHover: '#000',
+  buttonBorder: '#fff',
+  buttonBg: 'rgba(255, 255, 255, 0)',
+  buttonBgHover: 'rgba(255, 255, 255, 1)',
+};
+```
+
+Once these are in our `App.js`, go ahead and wrap the entire App with our `<ThemeProvider>`
+
+```javascript
+// App.js
+return (
+  // Wrapped in ThemeProvider
+  <ThemeProvider>
+    <Container>...</Container>
+  </ThemeProvider>
+);
+```
+
+Next we will alter our `Container`, `Button`, and `Modal` styles to receive props from `theme`:
+
+```javascript
+// App.js
+const Container = styled.div`
+  background: ${(props) => props.theme.background};
+  ...
+  `;
+```
+
+```javascript
+// Modal.js
+const Modal = styled.div`
+  background-color: ${(props) => props.theme.modalBg};
+  color: ${(props) => props.theme.text};
+  ...
+  `;
+```
+
+```javascript
+// Button.js
+export const SecondaryButton = styled(Button)`
+  border: 1px solid ${(props) => props.theme.buttonBorder};
+  color: ${(props) => props.theme.text};
+  ...
+  `;
+```
+
+Finally, we want to add another `useState` variable to `App.js` in order to invoke the light or dark theme. We also want a button to toggle the state on or off.
+
+```javascript
+function App() {
+
+  const [isDark, setIsDark] = useState(false);
+
+  return (
+    <ThemeProvider theme={isDark ? themeDark : themeLight}>
+        <PrimaryButton onClick={() => setIsDark(!isDark)}>
+          Change to {isDark ? 'light' : 'dark'} mode
+        </PrimaryButton>
+        ...
+  )
+}
+```
+
+We should then be able to see the theme toggle from dark to light mode as we click on the toggle theme button.
 
 ### In conclusion
 
