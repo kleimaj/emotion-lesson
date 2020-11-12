@@ -1,7 +1,9 @@
 
 function App() {
   return (
-    <div></div>
+    <div>
+      <h1>Emotion</h1>
+    </div>
   );
 }
 
