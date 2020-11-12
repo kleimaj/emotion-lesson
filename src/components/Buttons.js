@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+const primaryColor = `hotpink`;
+
 export const Button = styled.button`
   padding: 12px 24px;
   font-size: 1rem;
@@ -10,7 +12,7 @@ export const Button = styled.button`
 `;
 
 export const PrimaryButton = styled(Button)`
-  background-color: red;
+  background-color: ${primaryColor};
   border: none;
   color: white;
 `;
@@ -22,7 +24,7 @@ export const SecondaryButton = styled(Button)`
   transition: background-color 0.2s linear, color 0.2s linear;
 
   &:hover {
-    background-color: red;
-    color: white;
+    background-color: ${primaryColor};
+    color: black;
   }
 `;
