@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { SecondaryButton } from './components';
-import { SignUpModal } from './components';
 
 const Container = styled.div`
   background: white;
@@ -14,7 +13,6 @@ const Container = styled.div`
 function App() {
   return (
     <Container>
-      <SignUpModal />
       <SecondaryButton large>Press me</SecondaryButton>
     </Container>
   );
