@@ -65,6 +65,7 @@ First we're going to want to install the `styled-components` dependency.
 
 ```
 npm i @emotion/styled @emotion/core
+npm i emotion-theming react-spring
 ```
 
 ### The Basic Setup
