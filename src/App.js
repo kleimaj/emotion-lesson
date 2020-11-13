@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { SecondaryButton, PrimaryButton } from './components';
 import { SignUpModal } from './components';
@@ -35,8 +35,19 @@ const themeDark = {
   buttonBgHover: 'rgba(255, 255, 255, 1)',
 };
 function App() {
+  const getLocalStorage = () => {
+    const val = window.localStorage.getItem('isDark');
+    return val !== null ? val === 'true' : false;
+  }
+
   const [showModal, setShowModal] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(getLocalStorage);
+
+
+  useEffect(() => {
+    localStorage.setItem('isDark', isDark);
+  }, [isDark])
+
   return (
     <ThemeProvider theme={isDark ? themeDark : themeLight}>
       <Container>
