@@ -659,7 +659,18 @@ Finally, we want to add another `useState` variable to `App.js` in order to invo
 ```javascript
 function App() {
 
-  const [isDark, setIsDark] = useState(false);
+  const getLocalStorage = () => {
+    const val = window.localStorage.getItem('isDark');
+    return val !== null ? val === 'true' : false;
+  }
+
+  const [showModal, setShowModal] = useState(false);
+  const [isDark, setIsDark] = useState(getLocalStorage);
+
+
+  useEffect(() => {
+    localStorage.setItem('isDark', isDark);
+  }, [isDark])
 
   return (
     <ThemeProvider theme={isDark ? themeDark : themeLight}>
